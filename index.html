@@ -560,9 +560,9 @@
   .game-desc { font-size: 13px; color: var(--cream-dim); letter-spacing: 1px; }
   .game-wrap { position: relative; width: 100%; max-width: 700px; margin: 0 auto; border: 1px solid var(--line); background: var(--bg2); overflow: hidden; }
   #gameCanvas { display: block; width: 100%; height: auto; }
-  .game-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(14,12,11,0.88); backdrop-filter: blur(6px); transition: opacity 0.4s ease; z-index: 10; }
+  .game-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(14,12,11,0.92); backdrop-filter: blur(6px); transition: opacity 0.4s ease; z-index: 10; overflow-y: auto; }
   .game-overlay.hidden { opacity: 0; pointer-events: none; }
-  .game-overlay-inner { text-align: center; padding: 32px 24px; }
+  .game-overlay-inner { text-align: center; padding: 32px 24px; width: 100%; }
   .game-over-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--cream); margin-bottom: 12px; }
   .game-over-score { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--rose); margin-bottom: 8px; line-height: 1; }
   .game-over-desc { font-size: 13px; color: var(--cream-dim); line-height: 1.8; margin-bottom: 20px; }
@@ -620,13 +620,24 @@
     .album-card, .nav-links a, .btn-main, .btn-ghost,
     .amount-btn, .paypal-btn, .social-link { cursor: pointer; }
 
-    /* NAV */
-    nav { padding: 20px 24px; }
-    .nav-name { font-size: 16px; letter-spacing: 4px; }
-    .nav-links { gap: 18px; }
-    .nav-links a { font-size: 10px; letter-spacing: 1.5px; }
+    /* NAV — wrap to two rows if needed */
+    nav {
+      padding: 14px 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .nav-name { font-size: 15px; letter-spacing: 3px; }
+    .nav-links {
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      order: 3;
+    }
+    .nav-links a { font-size: 9px; letter-spacing: 1.5px; }
+    .theme-toggle { order: 2; }
 
-    /* HERO — stack vertically */
+    /* HERO */
     .hero {
       grid-template-columns: 1fr;
       min-height: auto;
@@ -653,34 +664,73 @@
     .vinyl-hint { font-size: 11px; letter-spacing: 2px; }
     .spindle { width: 10px; height: 10px; }
 
-    /* TRACKLIST */
-    .tracklist-state { padding: 40px 24px; }
-    .tl-header { flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
-    .tl-title { font-size: 24px; width: 100%; }
-    .tl-vinyl-mini { width: 36px; height: 36px; }
-    .tl-year { margin-left: 0; }
-    .track { padding: 16px 0; gap: 16px; }
-    .track:hover { padding-left: 0; }
-    .track-name { font-size: 18px; }
-    .track-num { width: 20px; font-size: 11px; }
+    /* TRACKLIST — full width, no side padding cutting */
+    .tracklist-state { padding: 32px 0; }
+    .tl-header { flex-wrap: wrap; gap: 12px; margin-bottom: 24px; padding: 0 20px 16px; }
+    .tl-title { font-size: 22px; width: 100%; }
+    .tl-vinyl-mini { width: 32px; height: 32px; }
+    .tl-year { margin-left: 0; font-size: 11px; }
+    .tl-num { font-size: 10px; }
+    .track { padding: 14px 20px; gap: 14px; border-bottom: 1px solid var(--line); }
+    .track:hover { padding-left: 20px; }
+    .track-name { font-size: 17px; }
+    .track-num { width: 18px; font-size: 11px; }
     .track-dur { font-size: 11px; }
+    .track-lyrics-icon { font-size: 10px; }
 
-    /* ABOUT */
+    /* ABOUT — center aligned on mobile */
     .about {
       grid-template-columns: 1fr;
       padding: 48px 24px;
       gap: 24px;
+      text-align: center;
     }
     .about-label { font-size: 26px; position: static; }
     .about-text { font-size: 14px; }
+    .artist-photo { margin: 0 auto 24px; }
+
+    /* VIDEOS — center header */
+    .yt-section { padding: 48px 24px; }
+    .yt-header { text-align: center; }
+    .yt-tag { display: block; }
+    .yt-coming-soon { padding: 48px 24px; }
+
+    /* COUNTDOWN */
+    .countdown-section { padding: 48px 24px; }
+    .cd-num { font-size: 40px; }
+    .cd-unit { min-width: 56px; }
+    .cd-sep { font-size: 28px; }
+    .cd-title, .cd-subtitle { text-align: center; }
+
+    /* EMAIL */
+    .email-section { padding: 48px 24px; }
+    .email-form { flex-direction: column; }
+    .email-input { border-right: 1px solid var(--line); border-bottom: none; }
+    .email-submit { width: 100%; padding: 14px; }
 
     /* SUPPORT */
     .support { padding: 48px 24px; }
-    .support-title { font-size: 30px; }
+    .support-title { font-size: 28px; }
     .support-desc { font-size: 13px; }
-    .support-amounts { gap: 8px; }
-    .amount-btn { padding: 10px 18px; font-size: 12px; }
     .paypal-btn { padding: 14px 24px; font-size: 10px; width: 100%; justify-content: center; }
+
+    /* GAME — fix overlay and hud */
+    .game-section { padding: 48px 24px; }
+    .game-title { font-size: 30px; }
+    .game-over-title { font-size: 24px; }
+    .game-over-score { font-size: 40px; }
+    .game-over-desc { font-size: 12px; }
+    .game-controls-hint { gap: 8px; font-size: 10px; flex-direction: column; align-items: center; }
+    .game-overlay-inner { padding: 24px 16px; }
+    /* HUD — stack vertically on mobile */
+    .game-hud {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 12px 16px;
+      font-size: 12px;
+    }
+    .hud-global { font-size: 13px; font-weight: 500; }
 
     /* CONNECT */
     .connect {
@@ -695,18 +745,25 @@
     .btn-main { width: 100%; text-align: center; justify-content: center; display: flex; }
 
     /* FOOTER */
-    footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    footer { padding: 20px 24px 20px 24px; flex-direction: row; flex-wrap: wrap; gap: 8px; }
+    .footer-copy { font-size: 10px; }
+    .back-to-top-fixed { right: 20px; bottom: 20px; cursor: pointer; }
   }
 
   @media (max-width: 420px) {
-    .nav-links { gap: 12px; }
-    .nav-links a { font-size: 9px; letter-spacing: 1px; }
+    nav { padding: 12px 16px; }
+    .nav-links a { font-size: 8px; letter-spacing: 1px; gap: 10px; }
     .hero { padding: 40px 20px 32px; }
-    .tracklist-state { padding: 32px 20px; }
+    .tracklist-state { padding: 28px 0; }
+    .track { padding: 12px 16px; }
+    .tl-header { padding: 0 16px 14px; }
     .about, .support, .connect { padding: 40px 20px; }
-    footer { padding: 20px; }
+    .yt-section, .game-section, .countdown-section, .email-section { padding: 40px 20px; }
+    footer { padding: 16px 20px; }
     .vinyl-player { width: 280px; height: 240px; }
     #playerCanvas { width: 170px !important; height: 170px !important; }
+    .cd-num { font-size: 32px; }
+    .cd-unit { min-width: 44px; }
   }
 
   /* ── GAME SECTION ── */
