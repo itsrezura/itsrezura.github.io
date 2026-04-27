@@ -738,7 +738,7 @@
     footer { padding: 32px 24px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; position: relative; }
     .footer-name { font-size: 11px; letter-spacing: 2px; flex-shrink: 0; }
     .footer-copy { font-size: 9px; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
-    .back-to-top-footer { cursor: pointer; }
+    .back-to-top-footer { display: flex; cursor: pointer; }
     [data-theme="light"] .back-to-top-footer svg { stroke: #6a2e0e; }
   }
 
@@ -852,7 +852,7 @@
     width: 36px; height: 36px;
     border: 1px solid var(--line-hover);
     background: transparent;
-    display: flex;
+    display: none;
     align-items: center; justify-content: center;
     cursor: none; flex-shrink: 0;
     opacity: 0; pointer-events: none; transform: translateY(15px);
@@ -2072,28 +2072,36 @@ window.addEventListener('load', () => {
   requestAnimationFrame(tick);
 })();
 
-/* ══ BACK TO TOP (SMART HANDOFF) ══ */
+/* ══ BACK TO TOP (SMART HANDOFF FOR MOBILE ONLY) ══ */
 const bttFixed = document.getElementById('btt');
 const bttFooter = document.querySelector('.back-to-top-footer');
 const footerEl = document.querySelector('footer');
 
 window.addEventListener('scroll', () => {
-  // Sensor: membaca posisi garis batas atas footer terhadap layar bawah
+  // Cek apakah ukuran layar saat ini adalah layar HP (768px ke bawah) atau PC
+  const isMobile = window.innerWidth <= 768; 
   const footerRect = footerEl.getBoundingClientRect();
   const isFooterVisible = footerRect.top <= window.innerHeight;
 
-  if (isFooterVisible) {
-    // 1. Menyentuh footer: Tombol melayang memudar hilang, Tombol footer muncul (naik)
-    bttFixed.classList.remove('visible');
-    bttFooter.classList.add('visible');
-  } else if (window.scrollY > 400) {
-    // 2. Di tengah halaman: Tombol melayang muncul, Tombol footer bersembunyi (turun)
-    bttFixed.classList.add('visible');
-    bttFooter.classList.remove('visible');
+  if (isMobile) {
+    // LOGIKA KHUSUS HP: Gunakan efek animasi transisi Handoff
+    if (isFooterVisible) {
+      bttFixed.classList.remove('visible');
+      bttFooter.classList.add('visible');
+    } else if (window.scrollY > 400) {
+      bttFixed.classList.add('visible');
+      bttFooter.classList.remove('visible');
+    } else {
+      bttFixed.classList.remove('visible');
+      bttFooter.classList.remove('visible');
+    }
   } else {
-    // 3. Di paling atas: Keduanya disembunyikan
-    bttFixed.classList.remove('visible');
-    bttFooter.classList.remove('visible');
+    // LOGIKA KHUSUS PC: Tombol akan selalu melayang seperti biasa
+    if (window.scrollY > 400) {
+      bttFixed.classList.add('visible');
+    } else {
+      bttFixed.classList.remove('visible');
+    }
   }
 }, { passive: true });
 
