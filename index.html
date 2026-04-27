@@ -738,7 +738,6 @@
     footer { padding: 32px 24px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; position: relative; }
     .footer-name { font-size: 11px; letter-spacing: 2px; flex-shrink: 0; }
     .footer-copy { font-size: 9px; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
-    .back-to-top-footer { display: flex; cursor: pointer; }
     [data-theme="light"] .back-to-top-footer svg { stroke: #6a2e0e; }
   }
 
@@ -849,15 +848,15 @@
   }
 
   .back-to-top-footer {
-    width: 36px; height: 36px;
-    border: 1px solid var(--line-hover);
-    background: transparent;
-    display: none;
-    align-items: center; justify-content: center;
-    cursor: none; flex-shrink: 0;
-    opacity: 0; pointer-events: none; transform: translateY(15px);
-    transition: opacity 0.4s ease, transform 0.4s ease, background 0.3s, border-color 0.3s;
-  }
+  width: 36px; height: 36px;
+  border: 1px solid var(--line-hover);
+  background: transparent;
+  display: none;
+  align-items: center; justify-content: center;
+  cursor: none; flex-shrink: 0;
+  opacity: 0; pointer-events: none; transform: translateY(15px);
+  transition: opacity 0.4s ease, transform 0.4s ease, background 0.3s, border-color 0.3s;
+}
   .back-to-top-footer.visible {
     opacity: 1; pointer-events: all; transform: translateY(0);
   }
