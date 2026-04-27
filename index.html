@@ -533,10 +533,11 @@
   [data-theme="light"] .email-submit { cursor: pointer; }
 
   @media (max-width: 768px) {
-    .cd-grid { gap: 12px; }
-    .cd-num { font-size: 44px; }
-    .cd-unit { min-width: 60px; }
-    .cd-sep { font-size: 32px; }
+    .cd-grid { gap: 8px; flex-wrap: nowrap; }
+    .cd-num { font-size: 36px; }
+    .cd-unit { min-width: auto; }
+    .cd-label { font-size: 9px; letter-spacing: 1px; }
+    .cd-sep { font-size: 28px; }
     .countdown-section, .yt-section, .email-section { padding: 48px 24px; }
     .cd-title, .yt-title, .email-title { font-size: 28px; }
     .yt-grid { grid-template-columns: 1fr; }
@@ -547,8 +548,10 @@
   }
   @media (max-width: 420px) {
     .countdown-section, .yt-section, .email-section { padding: 40px 20px; }
-    .cd-num { font-size: 36px; }
-    .cd-unit { min-width: 48px; }
+    .cd-num { font-size: 28px; }
+    .cd-unit { min-width: auto; }
+    .cd-label { font-size: 7.5px; letter-spacing: 1px; }
+    .cd-sep { font-size: 20px; padding-top: 6px; }
   }
 
   /* ── GAME SECTION ── */
@@ -1056,6 +1059,8 @@
   <h2 class="cd-title">Something <em>new</em> is on the way</h2>
   <p class="cd-subtitle" id="cd-subtitle">Next release dropping soon</p>
   <div class="cd-grid" id="cd-grid">
+    <div class="cd-unit"><div class="cd-num" id="cd-months">?</div><div class="cd-label">Months</div></div>
+    <div class="cd-sep">·</div>
     <div class="cd-unit"><div class="cd-num" id="cd-days">?</div><div class="cd-label">Days</div></div>
     <div class="cd-sep">·</div>
     <div class="cd-unit"><div class="cd-num" id="cd-hours">?</div><div class="cd-label">Hours</div></div>
