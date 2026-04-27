@@ -533,11 +533,10 @@
   [data-theme="light"] .email-submit { cursor: pointer; }
 
   @media (max-width: 768px) {
-    .cd-grid { gap: 8px; flex-wrap: nowrap; }
-    .cd-num { font-size: 36px; }
-    .cd-unit { min-width: auto; }
-    .cd-label { font-size: 9px; letter-spacing: 1px; }
-    .cd-sep { font-size: 28px; }
+    .cd-grid { gap: 12px; }
+    .cd-num { font-size: 44px; }
+    .cd-unit { min-width: 60px; }
+    .cd-sep { font-size: 32px; }
     .countdown-section, .yt-section, .email-section { padding: 48px 24px; }
     .cd-title, .yt-title, .email-title { font-size: 28px; }
     .yt-grid { grid-template-columns: 1fr; }
@@ -548,10 +547,8 @@
   }
   @media (max-width: 420px) {
     .countdown-section, .yt-section, .email-section { padding: 40px 20px; }
-    .cd-num { font-size: 28px; }
-    .cd-unit { min-width: auto; }
-    .cd-label { font-size: 7.5px; letter-spacing: 1px; }
-    .cd-sep { font-size: 20px; padding-top: 6px; }
+    .cd-num { font-size: 36px; }
+    .cd-unit { min-width: 48px; }
   }
 
   /* ── GAME SECTION ── */
@@ -868,7 +865,7 @@
 
   /* ── BACK TO TOP FIXED ── */
   .back-to-top-fixed {
-    position: fixed; bottom: 8px; right: 60px; z-index: 200;
+    position: fixed; bottom: 22px; right: 60px; z-index: 200;
     width: 36px; height: 36px;
     border: 1px solid var(--line-hover);
     background: var(--bg2);
@@ -1059,8 +1056,6 @@
   <h2 class="cd-title">Something <em>new</em> is on the way</h2>
   <p class="cd-subtitle" id="cd-subtitle">Next release dropping soon</p>
   <div class="cd-grid" id="cd-grid">
-    <div class="cd-unit"><div class="cd-num" id="cd-months">?</div><div class="cd-label">Months</div></div>
-    <div class="cd-sep">·</div>
     <div class="cd-unit"><div class="cd-num" id="cd-days">?</div><div class="cd-label">Days</div></div>
     <div class="cd-sep">·</div>
     <div class="cd-unit"><div class="cd-num" id="cd-hours">?</div><div class="cd-label">Hours</div></div>
